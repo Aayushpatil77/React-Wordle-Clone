@@ -1,24 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import Key from './Key';
 
 function App() {
+
+  const generateKeys = () => {
+        const KEYS = [];
+        const KEYBOARD = "qwertyuiopasdfghjklzxcvbnm".toUpperCase();
+        KEYBOARD.split("").forEach((v, i)=>{
+            if (v === 'A'){
+              KEYS.push(<div className='space'></div>)
+            }
+            if (v === 'Z'){
+              KEYS.push(<div className='space'></div>)
+              KEYS.push(<Key keyName='ENTER'/>)
+            }
+            KEYS.push(<Key keyName={v} key={v}/>)
+        })
+        KEYS.push(<Key keyImage/>)
+        return KEYS;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className='guess-grid'>
+    <div className='tile'></div>
+        
     </div>
+    <div className='keyboard'>
+
+      {generateKeys()}
+      
+    </div>
+    </>
   );
 }
 
